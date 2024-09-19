@@ -24,7 +24,19 @@ function genererDate() {
 
     const randomIndex = Math.floor(Math.random() * dates.length);
     const date = dates[randomIndex];
+    
+    // Créer un élément pour la description
+    const descriptionElement = document.createElement('p');
+    descriptionElement.textContent = date.description;
+    descriptionElement.style.marginBottom = '20px';
+    
+    // Vider le contenu précédent
+    resultat.innerHTML = '';
+    videoContainer.innerHTML = '';
+    
+    // Ajouter l'idée et la description
     resultat.textContent = date.idee;
+    resultat.appendChild(descriptionElement);
 
     // Ajouter la vidéo TikTok
     videoContainer.innerHTML = date.videoTikTok;
