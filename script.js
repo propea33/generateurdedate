@@ -26,18 +26,14 @@ function genererDate() {
     const date = dates[randomIndex];
     resultat.textContent = date.idee;
 
-    // Ajouter la vidéo TikTok si disponible
-    if (date.videoTikTok) {
-        const videoId = date.videoTikTok.split('/video/')[1];
-        videoContainer.innerHTML = `
-            <blockquote class="tiktok-embed" cite="${date.videoTikTok}" data-video-id="${videoId}">
-                <section> <a target="_blank" href="${date.videoTikTok}">Loading...</a> </section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js"><\/script>
-        `;
-    } else {
-        videoContainer.innerHTML = '';
-    }
+    // Ajouter la vidéo TikTok
+    videoContainer.innerHTML = date.videoTikTok;
+    
+    // Recharger le script TikTok pour s'assurer que la nouvelle vidéo est correctement intégrée
+    const script = document.createElement('script');
+    script.src = "https://www.tiktok.com/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
 }
 
 // Charger les dates au chargement de la page
