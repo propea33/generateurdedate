@@ -14,15 +14,19 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 800px;
+    max-width: 1000px;  /* Augmentation de la largeur */
     width: 100%;
+}
+
+.main-title {
+    font-size: 2.5rem;  /* Titre plus grand */
+    margin-bottom: 1.5rem;
 }
 
 button {
     font-size: 1.2rem;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -30,7 +34,11 @@ button {
     margin: 10px;
 }
 
-button:hover {
+#generer {
+    background-color: #4CAF50;  /* Le bouton "Générer une date" reste vert */
+}
+
+#generer:hover {
     background-color: #45a049;
 }
 
@@ -58,10 +66,10 @@ button:hover {
     margin-bottom: 10px;
 }
 
-#share-facebook {
-    background-color: #3b5998;
+#share-facebook, #share-email {
+    background-color: #1877f2;  /* Bleu Facebook pour les deux boutons de partage */
 }
 
-#share-email {
-    background-color: #db4437;
+#share-facebook:hover, #share-email:hover {
+    background-color: #166fe5;
 }
