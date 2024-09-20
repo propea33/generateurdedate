@@ -75,8 +75,15 @@ Vidéo TikTok : ${extractTikTokLink(currentDate.videoTikTok)}`);
 
 // Fonction pour extraire le lien TikTok de l'embed code
 function extractTikTokLink(embedCode) {
-    const match = embedCode.match(/src="([^"]+)"/);
-    return match ? match[1] : "Lien non disponible";
+    const citeMatch = embedCode.match(/cite="([^"]+)"/);
+    if (citeMatch && citeMatch[1]) {
+        return citeMatch[1];
+    }
+    const hrefMatch = embedCode.match(/href="([^"]+)"/);
+    if (hrefMatch && hrefMatch[1]) {
+        return hrefMatch[1];
+    }
+    return "Lien non disponible";
 }
 
 // Charger les dates au chargement de la page
