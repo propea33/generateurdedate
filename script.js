@@ -3,6 +3,7 @@ const resultat = document.getElementById('resultat');
 const ideeElement = document.getElementById('idee');
 const descriptionElement = document.getElementById('description');
 const videoContainer = document.getElementById('video-container');
+const shareContainer = document.getElementById('share-container');
 const shareFacebook = document.getElementById('share-facebook');
 const shareEmail = document.getElementById('share-email');
 let dates = [];
@@ -37,6 +38,9 @@ function genererDate() {
     // Ajouter la vidéo TikTok
     videoContainer.innerHTML = currentDate.videoTikTok;
     
+    // Afficher les boutons de partage
+    shareContainer.style.display = 'block';
+
     // Recharger le script TikTok pour s'assurer que la nouvelle vidéo est correctement intégrée
     const script = document.createElement('script');
     script.src = "https://www.tiktok.com/embed.js";
@@ -57,9 +61,22 @@ function partagerFacebook() {
 function partagerEmail() {
     if (currentDate) {
         const subject = encodeURIComponent("Idée de date intéressante");
-        const body = encodeURIComponent(`Découvrez cette super idée de date : ${currentDate.idee}\n\n${currentDate.description}`);
+        const body = encodeURIComponent(`Découvrez cette super idée de date :
+
+Titre : ${currentDate.idee}
+
+Description : ${currentDate.description}
+
+Vidéo TikTok : ${extractTikTokLink(currentDate.videoTikTok)}`);
+        
         window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
+}
+
+// Fonction pour extraire le lien TikTok de l'embed code
+function extractTikTokLink(embedCode) {
+    const match = embedCode.match(/src="([^"]+)"/);
+    return match ? match[1] : "Lien non disponible";
 }
 
 // Charger les dates au chargement de la page
