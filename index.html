@@ -34,17 +34,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div align="center"><img src="https://quoifaireendate.com/back_logo.png"></div>
+    <header>
+        <img src="https://www.quoifaireendate.com/back_logo.png" alt="Logo" class="logo">
+    </header>
     <div class="container">
-        <h1 class="main-title">Générateur de Dates</h1>
+        <h1 id="générateur-de-dates" class="main-title">Générateur de Dates</h1>
         <button id="generer">Générer une date</button>
         <div id="resultat">
             <h2 id="idee"></h2>
             <p id="description"></p>
         </div>
         <div id="video-container"></div>
-        <div id="share-container">
-            <p>Vous aimez cette date? Partagez-la!</p>
+        <div id="share-container" style="display: none;">
+            <p><strong>Vous aimez cette date? Partagez-la!</strong></p>
             <button id="share-facebook">Partager sur Facebook</button>
             <button id="share-email">Partager par email</button>
         </div>
