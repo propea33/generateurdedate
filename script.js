@@ -117,6 +117,25 @@ function ajouterAuCalendrier() {
     }
 }
 
+// Fonction pour gérer la sélection des boutons de critères
+function initializeCriteriaButtons() {
+    const criteriaGroups = document.querySelectorAll('.criteria-group');
+    
+    criteriaGroups.forEach(group => {
+        const buttons = group.querySelectorAll('.criteria-btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Désélectionner tous les boutons du groupe
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                
+                // Sélectionner le bouton cliqué
+                button.classList.add('selected');
+            });
+        });
+    });
+}
+
 // Fonction pour formater la date pour les URL de calendrier
 function formatDate(date) {
     return date.toISOString().replace(/-|:|\.\d\d\d/g, '');
@@ -143,3 +162,4 @@ boutonGenerer.addEventListener('click', genererDate);
 shareFacebook.addEventListener('click', partagerFacebook);
 shareEmail.addEventListener('click', partagerEmail);
 shareCalendar.addEventListener('click', ajouterAuCalendrier);
+document.addEventListener('DOMContentLoaded', initializeCriteriaButtons);
