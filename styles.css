@@ -48,8 +48,49 @@ button {
     margin: 10px;
 }
 
+#criteria-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.criteria-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.criteria-btn {
+    background-color: #ffcccb; /* Rouge pâle */
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.criteria-btn:hover {
+    background-color: #ffb3b3;
+    transform: scale(1.05);
+}
+
+.criteria-btn:active {
+    transform: scale(0.95);
+}
+
+.price-btn {
+    font-weight: bold;
+}
+
 #generer {
     background-color: #4CAF50;
+    margin-top: 20px;
 }
 
 #generer:hover {
