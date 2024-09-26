@@ -84,6 +84,11 @@ button {
     transform: scale(0.95);
 }
 
+.criteria-btn.selected {
+    background-color: #ff8080; 
+    color: white;
+}
+
 .price-btn {
     font-weight: bold;
 }
