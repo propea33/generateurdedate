@@ -80,10 +80,19 @@ button {
     margin-bottom: 10px;
 }
 
-#share-facebook, #share-email {
+#share-facebook, #share-email, #share-calendar {
     background-color: #1877f2;
+    margin: 5px;
 }
 
-#share-facebook:hover, #share-email:hover {
+#share-facebook:hover, #share-email:hover, #share-calendar:hover {
     background-color: #166fe5;
+}
+
+#share-calendar {
+    background-color: #4CAF50;
+}
+
+#share-calendar:hover {
+    background-color: #45a049;
 }
