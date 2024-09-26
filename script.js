@@ -6,6 +6,7 @@ const videoContainer = document.getElementById('video-container');
 const shareContainer = document.getElementById('share-container');
 const shareFacebook = document.getElementById('share-facebook');
 const shareEmail = document.getElementById('share-email');
+const shareCalendar = document.getElementById('share-calendar');
 let dates = [];
 let currentDate = null;
 
@@ -73,6 +74,54 @@ Vidéo TikTok : ${extractTikTokLink(currentDate.videoTikTok)}`);
     }
 }
 
+// Fonction pour ajouter au calendrier
+function ajouterAuCalendrier() {
+    if (currentDate) {
+        const title = encodeURIComponent(currentDate.idee);
+        const details = encodeURIComponent(currentDate.description);
+        const startDate = new Date();
+        const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // Ajoute 2 heures à la date de début
+
+        const formattedStart = formatDate(startDate);
+        const formattedEnd = formatDate(endDate);
+
+        const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${formattedStart}/${formattedEnd}`;
+        
+        const icalContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'BEGIN:VEVENT',
+            `SUMMARY:${currentDate.idee}`,
+            `DESCRIPTION:${currentDate.description}`,
+            `DTSTART:${formattedStart}`,
+            `DTEND:${formattedEnd}`,
+            'END:VEVENT',
+            'END:VCALENDAR'
+        ].join('\n');
+
+        const blob = new Blob([icalContent], { type: 'text/calendar;charset=utf-8' });
+        const icalUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = icalUrl;
+        link.download = 'date.ics';
+        
+        // Demander à l'utilisateur quel type de calendrier il souhaite utiliser
+        const calendarType = prompt("Choisissez votre type de calendrier :\n1. Google Calendar\n2. iCal (Apple Calendar, Outlook, etc.)");
+        
+        if (calendarType === "1") {
+            window.open(googleCalendarUrl, '_blank');
+        } else if (calendarType === "2") {
+            link.click();
+        }
+    }
+}
+
+// Fonction pour formater la date pour les URL de calendrier
+function formatDate(date) {
+    return date.toISOString().replace(/-|:|\.\d\d\d/g, '');
+}
+
 // Fonction pour extraire le lien TikTok de l'embed code
 function extractTikTokLink(embedCode) {
     const citeMatch = embedCode.match(/cite="([^"]+)"/);
@@ -93,3 +142,4 @@ chargerDates();
 boutonGenerer.addEventListener('click', genererDate);
 shareFacebook.addEventListener('click', partagerFacebook);
 shareEmail.addEventListener('click', partagerEmail);
+shareCalendar.addEventListener('click', ajouterAuCalendrier);
